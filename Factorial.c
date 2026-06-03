@@ -1,5 +1,9 @@
 
 
+
+// factorial of number using c language //
+
+
 #include<stdio.h>
 
 
