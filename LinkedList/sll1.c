@@ -9,7 +9,7 @@ struct sll
     
 };
 
-struct sll *first ,*last =NULL ;
+struct sll *first=NULL ,*last =NULL ;
 
 struct sll *create_new_node(int element ){
     struct sll *NewNode=((struct sll *)malloc(sizeof(struct sll)));
@@ -25,13 +25,11 @@ struct sll *create_new_node(int element ){
 
 
 
-void insertion_at_begning(struct sll *first , int element){
+void insertion_at_begning(int element){
     struct sll *NewNode= create_new_node(element);
 
-      if(first==NULL){
-
-        first=last=NULL;
-
+      if(first==NULL && last==NULL){
+        first=last=NewNode;
     }
     else{
 
@@ -46,29 +44,30 @@ void insertion_at_begning(struct sll *first , int element){
 
 
 
-void insertion_at_end(struct sll *first,int element){
+void insertion_at_end(int element){
 
     struct sll *NewNode=create_new_node(element);
 
-    if(first==NULL){
-        first=last=NULL;
-
-    }
-    struct sll *last=first;
-
-    while(last->next !=NULL){
-       last->next=NewNode;
-       last=NewNode;
-       printf("%d->",last->data);
-
+    if(first==NULL && last==NULL){
+        first=last=NewNode;
+        return;
     }
 
+    struct sll* ptr = first;
+    while(ptr->next!=NULL){
+        ptr=ptr->next;
+    }
+
+    ptr->next = NewNode;
+
+    return;
+    
 }
 
 
 
 
-void traversal(struct sll *first){
+void traversal(){
     struct sll *temp=first;
 
     
@@ -82,7 +81,7 @@ void traversal(struct sll *first){
             temp=temp->next;
 
         }
-        printf("NULL \n ");
+        printf("NULL\n ");
 
 
     }
@@ -92,15 +91,16 @@ void traversal(struct sll *first){
 
 
 int main(){
-     
-    struct sll *s =create_new_node(2);
-    s->next=create_new_node(3);
-    s->next->next=create_new_node(4);
-    s->next->next->next=create_new_node(5);
+     struct sll *s=NULL;
 
-
-    insertion_at_begning(s,1);
-    traversal(s);
+    insertion_at_begning(1);
+    traversal();
+    insertion_at_begning(2);
+    traversal();
+    insertion_at_end(7);
+    traversal();
+    insertion_at_end(5);
+    traversal();
 
 
 
