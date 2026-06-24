@@ -95,12 +95,6 @@ struct sll  *deletion_from_begning(struct sll*first){
 
 
 
-struct sll *deletion_from_pos(struct sll*first ,int index){
-    
-
-}
-
-
 void traversal(){
     struct sll *temp=first;
 
