@@ -43,7 +43,6 @@ void insertion_at_begning(int element){
 }
 
 
-
 void insertion_at_end(int element){
 
     struct sll *NewNode=create_new_node(element);
@@ -64,7 +63,42 @@ void insertion_at_end(int element){
     
 }
 
+void insertion_at_pos(int element,int index){
+    struct sll *NewNode = create_new_node(element);
+    struct sll *p=first;
 
+    int pos=0;
+    while ( pos!=index-1)
+    {
+       p=p->next;
+       pos++;
+    }
+    
+    NewNode->data=element;
+    NewNode->next=p->next;
+    p->next=NewNode;
+
+    return;
+
+}
+
+
+struct sll  *deletion_from_begning(struct sll*first){
+  
+    struct sll *ptr=first;
+
+    first=first->next;
+    free(ptr);
+
+    return first;
+}
+
+
+
+struct sll *deletion_from_pos(struct sll*first ,int index){
+    
+
+}
 
 
 void traversal(){
@@ -87,23 +121,40 @@ void traversal(){
     }
 }
 
-// void insertion_at_pos(){
-    // struct sll *
-// }
-
-
 
 int main(){
      struct sll *s=NULL;
 
+    printf("\n\nlinked List Before insertion:\n ");
     insertion_at_begning(1);
     traversal();
     insertion_at_begning(2);
     traversal();
-    insertion_at_end(7);
+    insertion_at_end(3);
     traversal();
     insertion_at_end(5);
     traversal();
+    insertion_at_end(6);
+    traversal();
+    insertion_at_end(7);
+    traversal();
+    insertion_at_end(8);
+    traversal();
+    insertion_at_end(9);
+    traversal();
+    
+    printf("\n \nLinked List after insertion at pos \n");
+
+    insertion_at_pos(23,3);
+    traversal();
+
+
+    printf("\n \nLinked List after deletion from begning:\n ");
+    first= deletion_from_begning(first);
+    traversal();
+
+    // last=deletion_from_end(last);
+    // traversal();
 
 
 
