@@ -55,6 +55,10 @@ void selection_sort(int A[],int n){
 
 }
 
+void insertion_sort(){
+    
+}
+
 
 int main ()
 {

@@ -1,6 +1,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 struct sll
 {
@@ -82,16 +83,101 @@ void insertion_at_pos(int element,int index){
 
 }
 
+void deletion_from_begning(){
+    struct sll *temp =first;
+    if(first==NULL){
+        printf("List is empty !");
 
-struct sll  *deletion_from_begning(struct sll*first){
-  
-    struct sll *ptr=first;
+    }
+    else if(first->next==NULL){
+        temp=first;
+        first=first->next;
+        free(temp);
 
-    first=first->next;
-    free(ptr);
+    }
+    else{
+        temp=first;
+        first=first->next;
+        free(temp);
+    }
+  return;
 
-    return first;
 }
+
+ void deletion_form_end(){
+
+    struct sll *temp=first;
+    if(first==NULL){
+        printf("Linked list is empty !");
+    }
+    else if(first->next==NULL){
+        temp=first;
+        first=last=NULL;
+        free(temp);
+
+    }
+    else{
+     while(temp->next->next!=NULL){
+        temp=temp->next;
+    }
+
+    free(temp->next);
+    temp->next = NULL;
+    last = temp;
+    }
+     return;
+
+}
+
+void deletion_from_pos(int index){
+    struct sll* p=first;
+    struct sll * q=first->next;
+
+    if(first==NULL){
+        printf("Linked List is empty !");
+
+    }
+
+    if(index==0){
+        deletion_from_begning();
+    }
+
+    for(int i=0;i<index-1;i++){
+        p=p->next;
+        q=q->next;
+    }
+    p->next=q->next;
+    free(q);
+}
+
+
+void  searching(int element){
+    struct sll *temp=first;
+    int flag=0;
+    if(first==NULL){
+        printf("Searching is Unsuccessfull,Empty list !");
+    }
+    else{
+        temp=first;
+        while(temp!=NULL){
+            if(temp->data==element){
+                printf("Element Found:%d",element);
+                flag=1;
+            }
+            temp=temp->next;
+
+        }
+        if(flag==0){
+            printf("Element Not found !");
+
+        }
+    }
+    return;
+
+}
+
+
+
 
 
 
@@ -144,12 +230,21 @@ int main(){
 
 
     printf("\n \nLinked List after deletion from begning:\n ");
-    first= deletion_from_begning(first);
+    deletion_from_begning();
+    traversal();
+    deletion_from_begning();
     traversal();
 
-    // last=deletion_from_end(last);
-    // traversal();
+    printf("\n Linked List aftert deletion from end:\n");
+    deletion_form_end();
+    traversal();
 
+    printf("\n deletion from specific position : \n");
+    deletion_from_pos(4);
+    traversal();
+
+    printf("\nElement after seraching :\n");
+    searching(3);
 
 
 return 0;
