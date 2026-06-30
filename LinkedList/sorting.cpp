@@ -36,6 +36,7 @@ void bubble_sort(int A[],int n){
 
 }
 
+
 void selection_sort(int A[],int n){
     for(int i=0;i<n-1;i++){
         int least=A[i];
@@ -56,9 +57,8 @@ void selection_sort(int A[],int n){
 }
 
 void insertion_sort(){
-    
-}
 
+}
 
 int main ()
 {
